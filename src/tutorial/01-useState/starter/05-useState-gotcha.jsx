@@ -1,5 +1,21 @@
-const UseStateGotcha = () => {
-  return <h2>useState "gotcha"</h2>;
-};
+import { useState } from "react"
 
-export default UseStateGotcha;
+const UseStateGotcha = () => {
+  const [value, setValue] = useState(0)
+  const handleClick = () => {
+    setTimeout(() => {
+      console.log("clicked")
+      setValue(value + 1)
+    }, 3000)
+  }
+  return (
+    <div>
+      <h1>{value}</h1>
+      <button className="btn" onClick={handleClick}>
+        increase
+      </button>
+    </div>
+  )
+}
+
+export default UseStateGotcha
