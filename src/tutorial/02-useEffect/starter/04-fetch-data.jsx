@@ -3,19 +3,32 @@ const url = "https://api.github.com/users"
 
 const FetchData = () => {
   const [users, setUsers] = useState([])
+  let [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch(url)
-        const users = await response.json()
-        setUsers(users)
-      } catch (error) {
-        console.log(error)
+    setTimeout(() => {
+      const fetchData = async () => {
+        try {
+          const response = await fetch(url)
+          const users = await response.json()
+          setUsers(users)
+        } catch (error) {
+          console.log(error)
+        }
       }
-    }
-    fetchData()
+      fetchData()
+
+      setIsLoading(false)
+    }, 1000)
   }, [users])
+
+  if (isLoading) {
+    return (
+      <section>
+        <h2>Loading...</h2>
+      </section>
+    )
+  }
   return (
     <section>
       <h3>github users</h3>
@@ -27,7 +40,7 @@ const FetchData = () => {
               <img src={avatar_url} alt={login} />
               <div>
                 <h5>{login}</h5>
-                <a href="html_url">profile</a>
+                <a href={html_url}>profile</a>
               </div>
             </li>
           )
