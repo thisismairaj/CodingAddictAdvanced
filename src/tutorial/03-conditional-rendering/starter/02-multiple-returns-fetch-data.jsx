@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react"
-const url = "https://api.github.com/user1s/thisismairaj"
+const url = "https://api.github.com/users/thisismairaj"
 
 const MultipleReturnsFetchData = () => {
   const [isLoading, setIsLoading] = useState(true)
-  const [user, setUser] = useState(null)
+  const [user, setUser] = useState({})
   const [isError, setIsError] = useState(false)
 
   const fetchData = async () => {
@@ -22,10 +22,7 @@ const MultipleReturnsFetchData = () => {
     setIsLoading(false)
   }
   useEffect(() => {
-    setTimeout(() => {
-      fetchData()
-      setIsLoading(false)
-    }, 3000)
+    fetchData()
   }, [])
   if (isLoading) {
     return <h2>Loading...</h2>
