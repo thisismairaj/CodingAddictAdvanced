@@ -1,5 +1,22 @@
-const CleanupFunction = () => {
-  return <h2>cleanup function</h2>;
-};
+import { useState, useEffect } from "react"
 
-export default CleanupFunction;
+const CleanupFunction = () => {
+  const [toggle, setToggle] = useState(false)
+  return (
+    <div>
+      <button className="btn" onClick={() => setToggle(!toggle)}>
+        Toggle component
+      </button>
+      {toggle && <SecondComponent />}
+    </div>
+  )
+}
+
+const SecondComponent = () => {
+  useEffect(() => {
+    console.log("this interesting")
+  }, [])
+  return <h2>Toggled!</h2>
+}
+
+export default CleanupFunction
