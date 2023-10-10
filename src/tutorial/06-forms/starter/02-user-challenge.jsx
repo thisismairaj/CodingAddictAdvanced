@@ -12,7 +12,7 @@ const UserChallenge = () => {
     const fakeId = Date.now()
 
     const newUser = { id: fakeId, name }
-    const updatedUsers = { ...users, newUser }
+    const updatedUsers = [...users, newUser]
     setUsers(updatedUsers)
     setName("")
   }
