@@ -1,11 +1,15 @@
-import Input from "./tutorial/06-forms/starter/02-user-challenge"
+import useFetch from "./useFetch"
 
 function App() {
+  const [data] = useFetch("https://jsonplaceholder.typicode.com/todos")
+
   return (
-    <div className="container">
-      <Input />
-    </div>
+    <>
+      {data &&
+        data.map((item) => {
+          return <p key={item.id}>{item.title}</p>
+        })}
+    </>
   )
 }
-
 export default App
